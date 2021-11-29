@@ -26,8 +26,7 @@ if (!process.env._jwtprivate) {
   process.exit(1);
 }
 
-const URI =
-  "mongodb+srv://sunil:IPD123456@cluster0.dfy6e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const URI = process.env.URI;
 
 mongoose
   .connect(URI, {
