@@ -11,6 +11,7 @@ const buypdtsRouter = require("./routes/buypdts");
 const sellerRegRouter = require("./routes/seller_register");
 const sellerLogRouter = require("./routes/seller_login");
 const addpdtsRouter = require("./routes/addpdts");
+const sendmailRouter = require("./routes/sendmail");
 require("dotenv").config();
 
 const app = express();
@@ -47,6 +48,9 @@ app.use("/buypdts", buypdtsRouter);
 app.use("/buyer", sellerRegRouter);
 app.use("/buyer", sellerLogRouter);
 app.use("/buyer", addpdtsRouter);
+
+//send mail
+app.use("/sendmail", sendmailRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("uber_c/build"));
