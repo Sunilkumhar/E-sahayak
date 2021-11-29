@@ -2,8 +2,6 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 exports.send = async (req, res) => {
-  console.log(123);
-  // let testAccount = await nodemailer.createTestAccount();
 
   let Obj = JSON.parse(JSON.stringify(req.body));
 
@@ -18,7 +16,7 @@ exports.send = async (req, res) => {
   let mailOptions = {
     from: "alexis.corwin94@ethereal.email",
     to: `${Obj.email1},${Obj.email2}`,
-    subject: "Your recent purchase details", // Subject line
+    subject: "Your recent purchase details", 
     text: `You recently made a transcation of Rs${
       Obj.pdt_price * Obj.pdt_qunatity
     }
