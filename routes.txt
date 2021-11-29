@@ -118,7 +118,7 @@ Send Email : to seller and owner about transaction
     "pdt_qunatity" : 5,
     "pdt_name" : "rice"
     "pdt_image" : upload image of pdt
-}
+    }
 }
 
 
