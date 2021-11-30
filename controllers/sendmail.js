@@ -2,7 +2,6 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 exports.send = async (req, res) => {
-
   let Obj = JSON.parse(JSON.stringify(req.body));
 
   let transporter = nodemailer.createTransport({
@@ -16,14 +15,18 @@ exports.send = async (req, res) => {
   let mailOptions = {
     from: "alexis.corwin94@ethereal.email",
     to: `${Obj.email1},${Obj.email2}`,
-    subject: "Your recent purchase details", 
-    text: `You recently made a transcation of Rs${
-      Obj.pdt_price * Obj.pdt_qunatity
-    }
-          Product name : ${Obj.pdt_name} `,
+    subject: "Your recent purchase details",
+    html: `<div class="div" >
+    <img src="cid:unique@kreata.ee"  style="height : 50px">
+          <p>You recently made a transcation of Rs${
+            Obj.pdt_price * Obj.pdt_qunatity
+          }</p>
+          <p></p>Product name : ${Obj.pdt_name} </p>
+          </div>`,
     attachments: [
       {
         path: req.file.path,
+        cid: "unique@kreata.ee",
       },
     ],
   };
