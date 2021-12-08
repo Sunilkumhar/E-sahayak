@@ -25,7 +25,7 @@ const staffSchema = new Schema(
       trim: true,
     },
     staff_last_salary_paid: {
-      type: Date,
+      type: String,
       required: [true, "Last salary given required"],
       trim: true,
     },

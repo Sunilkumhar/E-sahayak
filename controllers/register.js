@@ -9,7 +9,8 @@ exports.register = async (req, res) => {
 
   let Obj = JSON.parse(JSON.stringify(req.body));
   user = new Owner(Obj);
-  user.owner_image = req.file.path;
+  // console.log(Obj);
+  user.owner_image = (req.file && req.file.path) || "";
   const salt = await bcrypt.genSalt(10);
   user.owner_password = await bcrypt.hash(req.body.owner_password, salt);
   user.save();
@@ -37,6 +38,7 @@ exports.update = async (req, res) => {
 
   let owner_email = await Owner.findOne({ owner_email: req.body.owner_email });
   let owner_phone = await Owner.findOne({ owner_phone: req.body.owner_phone });
+  let Obj = JSON.parse(JSON.stringify(req.body));
   if (owner_email)
     if (!(user.owner_email === owner_email.owner_email))
       return res.status(400).json({ message: "Phone Or email already exists" });
@@ -44,17 +46,10 @@ exports.update = async (req, res) => {
     if (!(user.owner_phone === owner_phone.owner_phone))
       return res.status(400).json({ message: "Phone Or email already exists" });
 
-  if (req.body.oldpassword) {
-    const checkpass = await bcrypt.compare(
-      req.body.oldpassword,
-      user.owner_password
-    );
-    if (!checkpass)
-      return res.status(400).json({ message: "Invalid Credentials" });
+  if (req.body.owner_password) {
     const salt = await bcrypt.genSalt(10);
     Obj.owner_password = await bcrypt.hash(req.body.owner_password, salt);
   }
-  let Obj = JSON.parse(JSON.stringify(req.body));
 
   let newObj = {
     ...Obj,

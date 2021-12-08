@@ -9,7 +9,8 @@ exports.register = async (req, res) => {
 
   let Obj = JSON.parse(JSON.stringify(req.body));
   user = new Seller(Obj);
-  user.seller_image = req.file.path;
+  user.seller_image = (req.file && req.file.path) || "";
+  // console.log(Obj);
   const salt = await bcrypt.genSalt(10);
   user.seller_password = await bcrypt.hash(req.body.seller_password, salt);
   user.save();
@@ -41,6 +42,8 @@ exports.update = async (req, res) => {
   let seller_phone = await Seller.findOne({
     seller_phone: req.body.seller_phone,
   });
+  let Obj = JSON.parse(JSON.stringify(req.body));
+
   if (seller_email)
     if (!(user.seller_email === seller_email.seller_email))
       return res.status(400).json({ message: "Phone Or email already exists" });
@@ -48,22 +51,16 @@ exports.update = async (req, res) => {
     if (!(user.seller_phone === seller_phone.seller_phone))
       return res.status(400).json({ message: "Phone Or email already exists" });
 
-  if (req.body.oldpassword) {
-    const checkpass = await bcrypt.compare(
-      req.body.oldpassword,
-      user.seller_password
-    );
-    if (!checkpass)
-      return res.status(400).json({ message: "Invalid Credentials" });
+  if (req.body.seller_password) {
     const salt = await bcrypt.genSalt(10);
     Obj.seller_password = await bcrypt.hash(req.body.seller_password, salt);
   }
 
-  let Obj = JSON.parse(JSON.stringify(req.body));
   let newObj = {
     ...Obj,
     seller_image: (req.file && req.file.path) || user.seller_image,
   };
+  console.log(Obj);
   const updateUser = await Seller.findByIdAndUpdate(
     { _id: req.params.id },
     {

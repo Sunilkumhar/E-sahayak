@@ -7,6 +7,7 @@ register :
     "owner_phone" : 7358577964,
     "owner_password" : "Sunil",
     "shop_address" : "202/A Kashmiri Apt ramdas nagar vasai(E)"
+    "owner_upi" :2134234,
     "owner_image" : upload image
 }
 

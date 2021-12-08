@@ -16,7 +16,7 @@ exports.addstaff = async (req, res) => {
 
   let Obj = JSON.parse(JSON.stringify(req.body));
   new_staff = new Staff(Obj);
-  new_staff.staff_image = req.file.path;
+  new_staff.staff_image = (req.file && req.file.path) || "";
   user.staff.push(new_staff);
   user.save();
   res.send(user);
