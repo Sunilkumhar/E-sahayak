@@ -58,7 +58,6 @@ router
   .get("/:s_id/:id", UsersController.onepdt)
   .put(
     "/:s_id/:id/update",
-
     upload.single("buy_image"),
     UsersController.updatepdt
   );

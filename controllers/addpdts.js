@@ -7,7 +7,7 @@ exports.addpdt = async (req, res) => {
 
   let Obj = JSON.parse(JSON.stringify(req.body));
   let pdt = new Pdtdetails(Obj);
-  pdt.buy_image = req.file.path;
+  pdt.buy_image = (req.file && req.file.path) || "";
   pdt.buy_seller_name = user.seller_name;
   pdt.buy_email = user.seller_email;
   pdt.buy_upi = user.seller_upi;
@@ -44,6 +44,7 @@ exports.updatepdt = async (req, res) => {
 
   pdtdata.buy_name = req.body.buy_name || pdtdata.buy_name;
   pdtdata.buy_price = req.body.buy_price || pdtdata.buy_price;
+  pdtdata.buy_quantity = req.body.buy_quantity || pdtdata.buy_quantity;
   pdtdata.buy_image = (req.file && req.file.path) || pdtdata.buy_image;
 
   user.buy_details.push(pdtdata);

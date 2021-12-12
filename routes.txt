@@ -84,6 +84,13 @@ Register :
     "seller_email" : "sk@gmil.com"
 }
 
+get email : 
+1. http://localhost:5000/buyer/one --- post request to get id
+{
+    "seller_email" : "sk@gmil.com"
+}
+
+
 Login : 
 1. http://localhost:5000/buyer/  -- post request for login of seller
 {
@@ -97,6 +104,7 @@ Addpdts : if seller wants to add product or update an existing
 {
     "buy_name" : "bajra",
     "buy_price" : "25",
+    "buy_quantity" : 256
     "buy_image" : upload image
 }
 

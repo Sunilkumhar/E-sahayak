@@ -10,6 +10,7 @@ const buypdtsRouter = require("./routes/buypdts");
 
 const sellerRegRouter = require("./routes/seller_register");
 const sellerLogRouter = require("./routes/seller_login");
+const getemailRouter = require("./routes/getemail");
 const addpdtsRouter = require("./routes/addpdts");
 const sendmailRouter = require("./routes/sendmail");
 require("dotenv").config();
@@ -46,6 +47,7 @@ app.use("/buypdts", buypdtsRouter);
 // all routes for seller
 app.use("/buyer", sellerRegRouter);
 app.use("/buyer", sellerLogRouter);
+app.use("/buyer/one", getemailRouter);
 app.use("/buyer", addpdtsRouter);
 
 //send mail

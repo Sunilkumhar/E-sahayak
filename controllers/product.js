@@ -8,7 +8,7 @@ exports.addpdt = async (req, res) => {
   let Obj = JSON.parse(JSON.stringify(req.body));
   let pdt = new Pdtdetails(Obj);
   pdt.pdt_profit = Obj.pdt_current_price - Obj.pdt_bought_price;
-  pdt.pdt_image = req.file.path;
+  pdt.pdt_image = req.body.pdt_image;
   user.product.push(pdt);
   user.save();
   res.send(pdt);

@@ -17,7 +17,7 @@ exports.send = async (req, res) => {
     to: `${Obj.email1},${Obj.email2}`,
     subject: "Your recent purchase details",
     html: `<div class="div" >
-    <img src="cid:unique@kreata.ee"  style="height : 50px">
+    <img src="${req.body.pdt_image}"  style="height : 50px">
           <p>You recently made a transcation of Rs${
             Obj.pdt_price * Obj.pdt_qunatity
           }</p>
@@ -25,7 +25,7 @@ exports.send = async (req, res) => {
           </div>`,
     attachments: [
       {
-        path: req.file.path,
+        path: req.body.pdt_image,
         cid: "unique@kreata.ee",
       },
     ],
