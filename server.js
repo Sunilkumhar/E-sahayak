@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const cors = require("cors");
+// const cors = require("cors");
 
 const registerRouter = require("./routes/register");
 const loginRouter = require("./routes/login");
@@ -19,7 +19,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors({ credentials: true }));
+// app.use(cors({ credentials: true }));
 app.use("/public", express.static("public"));
 
 if (!process.env._jwtprivate) {
