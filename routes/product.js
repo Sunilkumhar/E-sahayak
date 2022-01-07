@@ -47,18 +47,27 @@ const upload = multer({
 
 const UsersController = require("../controllers/product");
 
+// router
+//   .post(
+//     "/:o_id/addpdt",
+//     auth,
+//     upload.single("pdt_image"),
+//     UsersController.addpdt
+//   )
+//   .get("/:o_id/all", UsersController.allpdts)
+//   .get("/:o_id/:id", UsersController.onepdt)
+//   .put(
+//     "/:o_id/:id/update",
+//     auth,
+//     upload.single("pdt_image"),
+//     UsersController.updatepdt
+//   );
 router
-  .post(
-    "/:o_id/addpdt",
-    auth,
-    upload.single("pdt_image"),
-    UsersController.addpdt
-  )
+  .post("/:o_id/addpdt", upload.single("pdt_image"), UsersController.addpdt)
   .get("/:o_id/all", UsersController.allpdts)
   .get("/:o_id/:id", UsersController.onepdt)
   .put(
     "/:o_id/:id/update",
-    auth,
     upload.single("pdt_image"),
     UsersController.updatepdt
   );

@@ -47,13 +47,22 @@ const upload = multer({
 
 const UsersController = require("../controllers/addpdts");
 
+// router
+//   .post(
+//     "/:s_id/addpdt",
+//     auth,
+//     upload.single("buy_image"),
+//     UsersController.addpdt
+//   )
+//   .get("/:s_id/all", UsersController.allpdts)
+//   .get("/:s_id/:id", UsersController.onepdt)
+//   .put(
+//     "/:s_id/:id/update",
+//     upload.single("buy_image"),
+//     UsersController.updatepdt
+//   );
 router
-  .post(
-    "/:s_id/addpdt",
-    auth,
-    upload.single("buy_image"),
-    UsersController.addpdt
-  )
+  .post("/:s_id/addpdt", upload.single("buy_image"), UsersController.addpdt)
   .get("/:s_id/all", UsersController.allpdts)
   .get("/:s_id/:id", UsersController.onepdt)
   .put(

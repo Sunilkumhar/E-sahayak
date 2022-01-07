@@ -46,16 +46,27 @@ const upload = multer({
 });
 const UsersController = require("../controllers/seller_register");
 
+// router
+//   .post("/register", upload.single("seller_image"), UsersController.register)
+//   .get("/allusers", UsersController.allusers)
+//   .get("/:id", UsersController.oneuser)
+//   .put(
+//     "/:id/update",
+//     auth,
+//     upload.single("seller_image"),
+//     UsersController.update
+//   )
+//   .delete("/:id/delete", auth, UsersController.delete);
 router
   .post("/register", upload.single("seller_image"), UsersController.register)
   .get("/allusers", UsersController.allusers)
   .get("/:id", UsersController.oneuser)
   .put(
     "/:id/update",
-    auth,
+
     upload.single("seller_image"),
     UsersController.update
   )
-  .delete("/:id/delete", auth, UsersController.delete);
+  .delete("/:id/delete", UsersController.delete);
 
 module.exports = router;

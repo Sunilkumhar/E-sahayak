@@ -46,10 +46,25 @@ const upload = multer({
 });
 const UsersController = require("../controllers/staff");
 
+// router
+//   .post(
+//     "/:o_id/addstaff",
+//     auth,
+//     upload.single("staff_image"),
+//     UsersController.addstaff
+//   )
+//   .get("/:o_id/allstaff", UsersController.allstaff)
+//   .get("/:o_id/:id", UsersController.oneuser)
+//   .put(
+//     "/:o_id/:id/update",
+//     auth,
+//     upload.single("staff_image"),
+//     UsersController.updateone
+//   )
+//   .delete("/:o_id/:id/delete", auth, UsersController.delete);
 router
   .post(
     "/:o_id/addstaff",
-    auth,
     upload.single("staff_image"),
     UsersController.addstaff
   )
@@ -57,10 +72,9 @@ router
   .get("/:o_id/:id", UsersController.oneuser)
   .put(
     "/:o_id/:id/update",
-    auth,
     upload.single("staff_image"),
     UsersController.updateone
   )
-  .delete("/:o_id/:id/delete", auth, UsersController.delete);
+  .delete("/:o_id/:id/delete", UsersController.delete);
 
 module.exports = router;
